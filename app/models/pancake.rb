@@ -11,6 +11,7 @@ class Pancake < ApplicationRecord
     single.tap do |pancake|
       new_side = pancake.a_side? ? :b_side : :a_side
       pancake.update!(flip_status: new_side, flipped_at: Time.current)
+      PancakesSchema.subscriptions.trigger(:pancake_was_flipped, {}, pancake)
     end
   end
 end
