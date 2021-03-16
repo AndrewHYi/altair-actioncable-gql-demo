@@ -23,6 +23,7 @@ type PancakeWasFlippedPayload {
 }
 
 type Query {
+  dummy: Pancake
   pancake: Pancake!
 }
 
