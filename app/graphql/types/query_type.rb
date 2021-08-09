@@ -2,7 +2,7 @@
 
 module Types
   class QueryType < Types::BaseObject
-    field :pancake, PancakeType, null: false
+    # field :pancake, PancakeType, null: false
 
     def pancake
       Pancake.single

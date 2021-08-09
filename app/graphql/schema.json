@@ -196,24 +196,7 @@
           "name": "Query",
           "description": null,
           "fields": [
-            {
-              "name": "pancake",
-              "description": null,
-              "args": [
 
-              ],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Pancake",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
           ],
           "inputFields": null,
           "interfaces": [

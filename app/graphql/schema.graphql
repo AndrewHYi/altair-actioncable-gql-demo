@@ -23,7 +23,6 @@ type PancakeWasFlippedPayload {
 }
 
 type Query {
-  pancake: Pancake!
 }
 
 type Subscription {
