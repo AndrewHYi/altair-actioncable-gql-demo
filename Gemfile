@@ -13,6 +13,7 @@ gem "rack-cors"
 gem "redis"
 
 gem "graphql"
+gem "graphql-schema_comparator"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
