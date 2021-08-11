@@ -21,9 +21,9 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Check for breaking GQL schema changes
+      - name: Compare Schema
         run: |
-          bin/rake graphql:schema:compare
+          echo "::set-output name=compare-schema::$(bin/rake graphql:schema:compare)\n"
       - uses: actions/github-script@v4
         with:
           script: |
@@ -31,5 +31,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
+              body: ${{join(steps.compare_schema.outputs.*, '\n')}
             })
