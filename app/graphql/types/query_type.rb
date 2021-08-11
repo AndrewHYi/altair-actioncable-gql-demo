@@ -3,7 +3,7 @@
 module Types
   class QueryType < Types::BaseObject
     field :pancake, PancakeType, null: false
-    field :test_field, String, null: false, deprecation_reason: "test remove"
+    # field :test_field, String, null: false, deprecation_reason: "test remove"
 
     def pancake
       Pancake.single
