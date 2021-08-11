@@ -22,8 +22,14 @@ jobs:
         with:
           bundler-cache: true
       - name: Check for breaking GQL schema changes
+        id: set-result
+        # substitute %, \n, and \r to get multiline output to work...
         run: |
-          bin/rake graphql:schema:compare
+          OUTPUT_CONTENT=$(bin/rake graphql:schema:compare)
+          OUTPUT_CONTENT="${OUTPUT_CONTENT//'%'/'%25'}"
+          OUTPUT_CONTENT="${OUTPUT_CONTENT//$'\n'/'%0A'}"
+          OUTPUT_CONTENT="${OUTPUT_CONTENT//$'\r'/'%0D'}"
+          echo "::set-output name=output-content::$OUTPUT_CONTENT"
       - uses: actions/github-script@v4
         with:
           script: |
@@ -31,5 +37,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
+              body: "${{steps.set-result.outputs.output-content}}"
             })
