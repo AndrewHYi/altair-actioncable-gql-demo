@@ -1,0 +1,39 @@
+name: GQL Schema - Breaking Changes Labeler
+on: [pull_request]
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    needs: compare_schema
+    if: ${{ failure() }}
+    steps:
+      - uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: Has GQL Schema Change (Breaking)
+          github_token: ${{ github.token }}
+
+  compare_schema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Check for breaking GQL schema changes
+        id: set-result
+        # substitute %, \n, and \r to get multiline output to work...
+        run: |
+          OUTPUT_CONTENT=$(bin/rake graphql:schema:compare)
+
+          echo "::set-output name=output-content::$OUTPUT_CONTENT"
+      - uses: actions/github-script@v4
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "${{steps.set-result.outputs.output-content}}"
+            })
