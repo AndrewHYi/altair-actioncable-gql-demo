@@ -26,9 +26,7 @@ jobs:
         # substitute %, \n, and \r to get multiline output to work...
         run: |
           OUTPUT_CONTENT=$(bin/rake graphql:schema:compare)
-          OUTPUT_CONTENT="${OUTPUT_CONTENT//'%'/'%25'}"
-          OUTPUT_CONTENT="${OUTPUT_CONTENT//$'\n'/'%0A'}"
-          OUTPUT_CONTENT="${OUTPUT_CONTENT//$'\r'/'%0D'}"
+
           echo "::set-output name=output-content::$OUTPUT_CONTENT"
       - uses: actions/github-script@v4
         with:
