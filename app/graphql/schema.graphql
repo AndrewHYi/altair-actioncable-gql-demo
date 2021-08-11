@@ -24,7 +24,7 @@ type PancakeWasFlippedPayload {
 
 type Query {
   pancake: Pancake!
-  testField: String!
+  testField: String! @deprecated(reason: "test remove")
 }
 
 type Subscription {
