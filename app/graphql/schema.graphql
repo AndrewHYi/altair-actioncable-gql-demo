@@ -24,6 +24,7 @@ type PancakeWasFlippedPayload {
 
 type Query {
   pancake: Pancake!
+  testField: String!
 }
 
 type Subscription {
