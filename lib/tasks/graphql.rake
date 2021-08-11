@@ -20,7 +20,9 @@ namespace :graphql do
       old_schema, = Open3.capture2('git', 'show', 'develop:app/graphql/schema.graphql')
       new_schema = File.read(Rails.root.join('app', 'graphql', 'schema.graphql'))
 
-      system('bin/schema_comparator', 'compare', old_schema, new_schema)
+      unless system('bin/schema_comparator', 'compare', old_schema, new_schema)
+        abort('🙅 Aborting... Detected breaking GQL Schema changes 🚫')
+      end
     end
   end
 end
