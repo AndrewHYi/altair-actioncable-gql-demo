@@ -1,0 +1,17 @@
+example query:
+
+query {
+  crew {
+    id
+    name
+    agency
+    wikipedia
+    status
+    launches {
+      dateUtc
+      crew {
+        name
+      }
+    }
+	}
+}

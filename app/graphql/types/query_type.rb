@@ -2,10 +2,15 @@
 
 module Types
   class QueryType < Types::BaseObject
-    field :pancake, PancakeType, null: false
+    field :crews, [CrewType], null: false
+    field :launches, [LaunchType], null: false
 
-    def pancake
-      Pancake.single
+    def crews
+      Crew.all
+    end
+
+    def launches
+      Launch.all
     end
   end
 end

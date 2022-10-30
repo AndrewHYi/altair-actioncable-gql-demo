@@ -4,15 +4,13 @@ require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "active_storage/engine"
+# require "active_job/railtie"
+# require "active_storage/engine"
 require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_mailbox/engine"
-require "action_text/engine"
-require "action_view/railtie"
+# require "action_mailer/railtie"
+# require "action_mailbox/engine"
+# require "action_text/engine"
+# require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
@@ -36,5 +34,9 @@ module Pancakes
 
     config.action_controller.forgery_protection_origin_check = false
     config.action_cable.disable_request_forgery_protection = true
+
+    config.generators do |g|
+      g.orm :mongoid
+    end
   end
 end
