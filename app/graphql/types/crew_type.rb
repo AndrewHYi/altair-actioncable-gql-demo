@@ -7,6 +7,6 @@ module Types
     field :agency, String, null: false
     field :wikipedia, String, null: true
     field :status, String, null: false
-    field :launches, LaunchType.connection_type, null: false
+    field :launches, [LaunchType], null: false
   end
 end
