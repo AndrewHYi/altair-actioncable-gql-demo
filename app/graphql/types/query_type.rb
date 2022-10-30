@@ -2,8 +2,8 @@
 
 module Types
   class QueryType < Types::BaseObject
-    field :crews, [CrewType], null: false
-    field :launches, [LaunchType], null: false
+    field :crews, CrewType.connection_type, null: false
+    field :launches, LaunchType.connection_type, null: false
 
     def crews
       Crew.all
