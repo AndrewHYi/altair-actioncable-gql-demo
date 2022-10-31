@@ -2,5 +2,6 @@
 
 module Types
   class MutationType < Types::BaseObject
+    field :create_crew_member, mutation: Mutations::CreateCrewMember
   end
 end
