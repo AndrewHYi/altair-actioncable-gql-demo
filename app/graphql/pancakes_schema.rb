@@ -3,7 +3,7 @@
 class PancakesSchema < GraphQL::Schema
   query(Types::QueryType)
   mutation(Types::MutationType)
-  # subscription(Types::SubscriptionType)
+  subscription(Types::SubscriptionType)
 
   # Opt in to the new runtime (default in future graphql-ruby versions)
   use GraphQL::Execution::Interpreter
