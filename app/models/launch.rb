@@ -3,6 +3,7 @@
 class Launch
   include Mongoid::Document
 
+  field :id
   field :date_utc
   field :crew
 

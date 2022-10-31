@@ -5,8 +5,24 @@ module Types
     field :crews, [CrewType], null: false
     field :launches, [LaunchType], null: false
 
+    field :crew, CrewType, null: true do
+      argument :id, ID, required: true
+    end
+
+    field :launch, LaunchType, null: true do
+      argument :id, ID, required: true
+    end
+
+    def crew(id:)
+      Crew.find_by(id: id)
+    end
+
     def crews
       Crew.all
+    end
+
+    def launch(id:)
+      Launch.find_by(id: id)
     end
 
     def launches

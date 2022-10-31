@@ -2,7 +2,8 @@
 
 module Types
   class LaunchType < Types::BaseObject
-    field :date_utc, ID, null: false
+    field :id, ID, null: false
+    field :date_utc, String, null: false
     field :crew, [CrewType], null: false
   end
 end
